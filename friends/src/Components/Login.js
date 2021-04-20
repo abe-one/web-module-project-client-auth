@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const Login = () => {
   const initialCredentials = {
@@ -8,6 +9,7 @@ const Login = () => {
   };
 
   const [credentials, setCredentials] = useState(initialCredentials);
+  const history = useHistory();
 
   const handleChange = (e) => {
     setCredentials({
@@ -22,10 +24,13 @@ const Login = () => {
     axios
       .post("http://localhost:5000/api/login", credentials)
       .then((res) => {
-        console.log(res.data);
+        debugger;
+        window.localStorage.setItem("token", JSON.stringify(res.data.payload));
+        console.log(res.data.payload);
+        history.push("/friendslist");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       })
       .finally(() => {});
   };

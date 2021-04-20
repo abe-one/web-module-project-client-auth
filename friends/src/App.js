@@ -2,13 +2,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+import Login from "./Components/Login";
+import FriendsList from "./Components/FriendsList";
+
 /*
-Wrap everything in Router
-Create Links
-Route links to components
-  according to switch
-    Login
-    FriendList
+// Wrap everything in Router
+// Create Links
+// Route links to components
+  // according to switch
+    // Login
+    // FriendList
 Build Components
   Login
   FriendList
@@ -42,6 +45,10 @@ function App() {
           <Link to="/friendslist">Tip Top Secret Friends List</Link>
         </header>
       </div>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route exact path="/friendslist" component={FriendsList} />
+      </Switch>
     </Router>
   );
 }

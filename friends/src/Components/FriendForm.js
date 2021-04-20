@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { axiosAuth } from "../utils/axiosAuth";
 
 const FriendForm = ({ setFriends }) => {
-  const initialFormData = {
+  const initialFormValues = {
     name: "",
     age: "",
     email: "",
     id: "",
   };
 
-  const [formValues, setFormValues] = useState(initialFormData);
+  const [formValues, setFormValues] = useState(initialFormValues);
 
   const postFriend = (friendObj) => {
     axiosAuth()
       .post("/api/friends", friendObj)
       .then((res) => {
         setFriends(res.data);
+        setFormValues(initialFormValues);
       })
       .catch((err) => {
         console.log(err.response);
@@ -32,7 +33,7 @@ const FriendForm = ({ setFriends }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postFriend({ ...formValues, id: "77" });
+    postFriend({ ...formValues, id: "777" });
   };
 
   return (

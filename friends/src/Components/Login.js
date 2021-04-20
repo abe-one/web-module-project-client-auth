@@ -9,6 +9,8 @@ const Login = () => {
   };
 
   const [credentials, setCredentials] = useState(initialCredentials);
+  const [isLoading, setIsLoading] = useState(false);
+
   const history = useHistory();
 
   const handleChange = (e) => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { axiosAuth } from "../utils/axiosAuth";
 
 const FriendForm = ({ setFriends }) => {
   const initialFormData = {
@@ -10,6 +11,18 @@ const FriendForm = ({ setFriends }) => {
 
   const [formValues, setFormValues] = useState(initialFormData);
 
+  const postFriend = (friendObj) => {
+    axiosAuth()
+      .post("/api/friends", friendObj)
+      .then((res) => {
+        setFriends(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      })
+      .finally(() => {});
+  };
+
   const handleChange = (e) => {
     setFormValues({
       ...formValues,
@@ -18,8 +31,8 @@ const FriendForm = ({ setFriends }) => {
   };
 
   const handleSubmit = (e) => {
-    e.target.preventDefault();
-    alert("clicky submits");
+    e.preventDefault();
+    postFriend({ ...formValues, id: "77" });
   };
 
   return (

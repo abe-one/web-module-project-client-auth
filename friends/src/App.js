@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import Login from "./Components/Login";
+import PrivateRoute from "./Components/PrivateRoute";
 import FriendsList from "./Components/FriendsList";
 
 /*
@@ -12,17 +13,18 @@ import FriendsList from "./Components/FriendsList";
   // according to switch
     // Login
     // FriendList
-Build Components
-  Login
-  FriendList
-    FriendForm
-      'Add' Functionality
-Write axios
-  login
-  auth
-    get login
-    post friend
-Private Route Protected pages 
+// Build Components
+  // Login
+  // FriendList
+    // FriendForm
+      // 'Add' Functionality
+// Write axios
+  // login
+  // auth
+    // get login
+    // post friend
+// Private Route Protected pages 
+radom id
 
   
  */
@@ -30,7 +32,7 @@ Private Route Protected pages
 function App() {
   const logout = () => {
     // req to api re logout
-    // remove local token
+    window.localStorage.removeItem("token");
   };
 
   return (
@@ -47,7 +49,7 @@ function App() {
       </div>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route exact path="/friendslist" component={FriendsList} />
+        <PrivateRoute exact path="/friendslist" component={FriendsList} />
       </Switch>
     </Router>
   );

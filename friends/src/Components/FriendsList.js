@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import FriendForm from "./FriendForm";
+import { axiosAuth } from "../utils/axiosAuth";
 
 const FriendsList = () => {
   const [friends, setFriends] = useState([
@@ -14,12 +14,8 @@ const FriendsList = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/friends", {
-        headers: {
-          authorization: JSON.parse(window.localStorage.getItem("token")),
-        },
-      })
+    axiosAuth()
+      .get("/api/friends")
       .then((res) => {
         setIsLoading(true);
         console.log(res.data);

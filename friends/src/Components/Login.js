@@ -20,7 +20,6 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    // POST credentials
     axios
       .post("http://localhost:5000/api/login", credentials)
       .then((res) => {
